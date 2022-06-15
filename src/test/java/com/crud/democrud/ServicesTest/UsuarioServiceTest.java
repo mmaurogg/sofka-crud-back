@@ -58,12 +58,13 @@ public class UsuarioServiceTest {
 
     @Test
     public void testEliminarPorEmail(){
-        String email ="peipto@hotmail.com";
+        String email ="q@q.q";
         //UsuarioModel usuarioModel=new UsuarioModel("aquaman","aqua@gmail.com",99);
         List<UsuarioModel> usuarioModelList=(List<UsuarioModel>) usuarioRepository.findByEmail(email);
         for (UsuarioModel usuario : usuarioModelList) {
             usuarioRepository.deleteById(usuario.getId());
             }
-        assertThat(usuarioModelList).size().isEqualTo(0);
+        List<UsuarioModel> newUsuarioModelList=(List<UsuarioModel>) usuarioRepository.findByEmail(email);
+        assertThat(newUsuarioModelList).size().isEqualTo(0);
     }
 }
