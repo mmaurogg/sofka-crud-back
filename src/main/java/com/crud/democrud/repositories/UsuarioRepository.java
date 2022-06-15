@@ -10,4 +10,6 @@ import java.util.ArrayList;
 public interface UsuarioRepository extends CrudRepository<UsuarioModel, Long> {
     public abstract ArrayList<UsuarioModel> findByPrioridad(Integer prioridad);
 
+    public abstract ArrayList<UsuarioModel> findByEmail(String email);
+
 }

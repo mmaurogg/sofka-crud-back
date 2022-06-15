@@ -23,11 +23,14 @@ public class UsuarioService {
 
     public Optional<UsuarioModel> obtenerPorId(Long id){
         return usuarioRepository.findById(id);
-    }
-
+    }   
 
     public ArrayList<UsuarioModel>  obtenerPorPrioridad(Integer prioridad) {
         return usuarioRepository.findByPrioridad(prioridad);
+    }
+
+    public ArrayList<UsuarioModel>  obtenerPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 
     public boolean eliminarUsuario(Long id) {
@@ -39,6 +42,15 @@ public class UsuarioService {
         }
     }
 
-
-    
+    public boolean eliminarUsuariPorCorreo(String email) {
+        ArrayList<UsuarioModel> usuarios = usuarioRepository.findByEmail(email);
+            try{
+                for (UsuarioModel usuario : usuarios) {
+                usuarioRepository.deleteById(usuario.getId());
+                }
+                return true;
+            }catch(Exception err){
+                return false;
+            }
+    }
 }
